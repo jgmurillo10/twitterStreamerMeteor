@@ -20,14 +20,14 @@ if (Meteor.isServer) {
   // This method will trigger the streamer
   Meteor.methods({
     "twitter.stream"(query) {
-      console.log("Twitter search" + query);
+      console.log("Twitter search: " + query);
 
       // Create the Twitter object
       let client = new Twitter({
-        consumer_key: process.env.TWITTER_CONSUMER_KEY,
-        consumer_secret: process.env.TWITTER_CONSUMER_SECRET,
-        access_token_key: process.env.TWITTER_ACCESS_TOKEN_KEY,
-        access_token_secret: process.env.TWITTER_ACCESS_TOKEN_SECRET
+        consumer_key:         'XPR086QlepWWeU5YMelfM8vYz',
+        consumer_secret:      'rRqOGHGgjFyj8QCNOEUmde9wrogVb6uBiQOOYPykUh4Pqc9XtF',
+        access_token_key:         '817160473384718337-AQqXcKb8aTWxx8IIF0kBIMzwOWIyOKL',
+        access_token_secret:  'GrnB4sje7mlkmMf5pWeCJZDdfXjyEGSENsvgzl4DnNOml',
       });
 
       if (stream) {
@@ -36,7 +36,10 @@ if (Meteor.isServer) {
         // Remove all the tweets
         Tweets.remove({});
       }
-
+      //locations colombia
+      let locations = "-79.12,-4.23,-66.85,12.59";
+      //geo = "lat,lon,radius";
+      let geoLocation = "-75.0454,-4.36,1mi";
       stream = client.stream("statuses/filter", {track: query});
       stream.on("data", Meteor.bindEnvironment(function(tweet) {
         // console.log(tweet.text);

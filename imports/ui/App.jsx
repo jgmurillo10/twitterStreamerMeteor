@@ -4,6 +4,7 @@ import { Meteor } from "meteor/meteor";
 import { createContainer} from "meteor/react-meteor-data"
 
 import TweetsResults from "./TweetsResults.jsx";
+import TwitterNetwork from "./TwitterNetwork.jsx";
 import {Tweets} from "../api/Tweets.js";
 
 export class App extends Component {
@@ -20,8 +21,9 @@ export class App extends Component {
     let component = this;
 
     console.log(evt.target.value);
+    console.log('before Meteor call');
     Meteor.call("twitter.stream", evt.target.value);
-
+    console.log('after Meteor call');
   }
 
 
@@ -36,7 +38,8 @@ export class App extends Component {
         }
         <h2>Results:</h2>
         {this.props && this.props.tweets ?
-          <TweetsResults tweets={this.props.tweets}/> :
+
+          <TwitterNetwork tweets={this.props.tweets}/>:
           <p>Enter a query</p>
         }
 
