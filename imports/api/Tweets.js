@@ -24,10 +24,10 @@ if (Meteor.isServer) {
 
       // Create the Twitter object
       let client = new Twitter({
-        consumer_key:         'XPR086QlepWWeU5YMelfM8vYz',
-        consumer_secret:      'rRqOGHGgjFyj8QCNOEUmde9wrogVb6uBiQOOYPykUh4Pqc9XtF',
-        access_token_key:         '817160473384718337-AQqXcKb8aTWxx8IIF0kBIMzwOWIyOKL',
-        access_token_secret:  'GrnB4sje7mlkmMf5pWeCJZDdfXjyEGSENsvgzl4DnNOml',
+        consumer_key: process.env.TWITTER_CONSUMER_KEY,
+        consumer_secret: process.env.TWITTER_CONSUMER_SECRET,
+        access_token_key: process.env.TWITTER_ACCESS_TOKEN_KEY,
+        access_token_secret: process.env.TWITTER_ACCESS_TOKEN_SECRET
       });
 
       if (stream) {
