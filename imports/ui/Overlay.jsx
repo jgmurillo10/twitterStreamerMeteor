@@ -15,8 +15,10 @@ export default class Overlay extends Component{
     nextProps.tweets.forEach((tweet)=>{
       if(tweet.coordinates){
         console.log(tweet);
-        var p=this.props.getProjection(tweet.coordinates.coordinates);
+        console.log(this.props.getProjection()(tweet.coordinates.coordinates));
+        var p=this.props.getProjection()(tweet.coordinates.coordinates);
         let x= p[0], r=10, y=p[0];
+        console.log(x,y);
         ctx.fillText(tweet.user.screen_name, x+20,y+r/2);
         ctx.moveTo(x,y);
         ctx.arc(x,y,r,0,2*Math.PI)
