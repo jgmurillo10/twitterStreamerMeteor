@@ -6,13 +6,22 @@ import { createContainer} from "meteor/react-meteor-data"
 import TweetsResults from "./TweetsResults.jsx";
 import TwitterNetwork from "./TwitterNetwork.jsx";
 import {Tweets} from "../api/Tweets.js";
+import ColombiaMap from "./ColombiaMap.jsx";
+import Overlay from "./Overlay.jsx";
 
 export class App extends Component {
   constructor(props) {
     super(props);
+    this.projection=null;
 
   }
+  setProjection(p){
+    this.projection =p;
+  }
 
+  getProjection(){
+    return this.projection;
+  }
   changeQuery(evt) {
     if (evt.key !== "Enter") {
       return;
@@ -31,6 +40,12 @@ export class App extends Component {
     console.log("render!");
     return (
       <div>
+        <ColombiaMap
+          width="600"
+          height="600"
+          data={{RISARALDA:10, CALDAS:12}} setProjection={this.setProjection.bind(this)}
+        ></ColombiaMap>
+      <Overlay width="600" height="600" getProjection={this.getProjection.bind(this)} tweets={this.props.tweets} />
         <input type="text" onKeyPress={this.changeQuery.bind(this)} placeholder="Query"/>
         { this.props && this.props.err ?
           <div>Error: {this.props.err}</div> :
@@ -39,7 +54,7 @@ export class App extends Component {
         <h2>Results:</h2>
         {this.props && this.props.tweets ?
 
-          <TwitterNetwork tweets={this.props.tweets}/>:
+          <TweetsResults  tweets={this.props.tweets}/>:
           <p>Enter a query</p>
         }
 

@@ -40,7 +40,7 @@ if (Meteor.isServer) {
       let locations = "-79.12,-4.23,-66.85,12.59";
       //geo = "lat,lon,radius";
       let geoLocation = "-75.0454,-4.36,1mi";
-      stream = client.stream("statuses/filter", {track: query});
+      stream = client.stream("statuses/filter", {track: query, locations:locations});
       stream.on("data", Meteor.bindEnvironment(function(tweet) {
         // console.log(tweet.text);
         // resolve(tweet);
