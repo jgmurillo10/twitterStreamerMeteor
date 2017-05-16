@@ -5,18 +5,17 @@ export default class Overlay extends Component{
   constructor(props){
     super(props);
     this.canvas=null;
-    this.projection= this.props.getProjection();
+    //this.projection= this.props.getProjection();
   }
   componentWillUpdate(nextProps){
 
     let ctx = this.canvas.getContext("2d");
-    let tau = 2*Math.PI;
     ctx.fillStyle = "rgb(200,0,0)";
 
     nextProps.tweets.forEach((tweet)=>{
       if(tweet.coordinates){
         console.log(tweet);
-        p=this.projection(tweet.coordinates.coordinates);
+        var p=this.props.getProjection(tweet.coordinates.coordinates);
         let x= p[0], r=10, y=p[0];
         ctx.fillText(tweet.user.screen_name, x+20,y+r/2);
         ctx.moveTo(x,y);
