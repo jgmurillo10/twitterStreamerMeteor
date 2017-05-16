@@ -35,5 +35,6 @@ text.big-text{
   top: 0px;
   /*z-index: -1;*/
   border-style:solid;
+  pointer-events: none;
 
 }
