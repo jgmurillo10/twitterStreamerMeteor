@@ -18,3 +18,4 @@ Diferenciador Creativo:
 - Estilos aplicados sobre la aplicación
 - filtro para buscar no solo por la ubicación en sí, sino también por palabra + ubicación
 - Visualización de los tweets no solo en el mapa sino al lado del mismo para ver el contenido, con un enlace directo a la cuenta de la persona que hizo el tweet
+- filtro logico que descarga tweets que contengan el atributo location donde se descarta los países que comparten frontera con colombia para aumentar en porcentaje significativo la presición de los tweets de colombia
