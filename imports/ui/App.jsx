@@ -28,37 +28,66 @@ export class App extends Component {
     }
     // "this" will change in the method call, so I need to save it
     let component = this;
-
-    console.log(evt.target.value);
-    console.log('before Meteor call');
     Meteor.call("twitter.stream", evt.target.value);
-    console.log('after Meteor call');
+  }
+  getTweets(){
+    let component = this;
+    Meteor.call("twitter.stream", "");
+
   }
 
 
   render() {
     console.log("render!");
     return (
-      <div>
+      <div className="container">
+      <div className="row">
+        <div className="col-md-6">
+
+
         <ColombiaMap
-          width="600"
-          height="600"
+          width="500"
+          height="500"
           data={{RISARALDA:10, CALDAS:12}} setProjection={this.setProjection.bind(this)}
         ></ColombiaMap>
-      <Overlay width="600" height="600" getProjection={this.getProjection.bind(this)} tweets={this.props.tweets} />
-        <input type="text" onKeyPress={this.changeQuery.bind(this)} placeholder="Query"/>
+      <Overlay width="500" height="500" getProjection={this.getProjection.bind(this)} tweets={this.props.tweets} />
+      </div>
+      <div className="col-md-6">
+        <h1>Colombia Visualization React</h1>
+        <h2><a href="https://github.com/jgmurillo10" target="_blank"><i className="fa fa-github fa-fw"></i> @jgmurillo10</a></h2>
+
+        <div className="row">
+          <div className="form-horizontal" >
+            <div className="form-group">
+              <label className="control-label col-sm-6">Buscar palabra específica:</label>
+              <div className="col-sm-4">
+                <input type="text" placeholder="Falcao" className="form-control" onKeyPress={this.changeQuery.bind(this)} />
+              </div>
+            </div>
+            <hr></hr>
+
+
+            <div className="form-group">
+              <label className="control-label col-sm-6">Buscar todos los tweets en colombia:</label>
+              <div className="col-sm-6">
+                <button type="button"  className="btn" onClick={this.getTweets.bind(this)}> Buscar </button>
+              </div>
+            </div>
+          </div>
         { this.props && this.props.err ?
           <div>Error: {this.props.err}</div> :
           <span></span>
         }
-        <h2>Results:</h2>
+
         {this.props && this.props.tweets ?
 
           <TweetsResults  tweets={this.props.tweets}/>:
           <p>Enter a query</p>
         }
-
+        </div>
       </div>
+    </div>
+    </div>
     );
   }
 }

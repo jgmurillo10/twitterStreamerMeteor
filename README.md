@@ -13,3 +13,8 @@ meteor
 ```
 
 This is a very basic implementation that handles a global search shared by all users and doesn't implement any security or restriction. It's intended as a starting point, so add your own requirements.
+
+Diferenciador Creativo:
+- Estilos aplicados sobre la aplicación
+- filtro para buscar no solo por la ubicación en sí, sino también por palabra + ubicación
+- Visualización de los tweets no solo en el mapa sino al lado del mismo para ver el contenido, con un enlace directo a la cuenta de la persona que hizo el tweet

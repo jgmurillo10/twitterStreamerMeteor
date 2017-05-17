@@ -10,15 +10,20 @@ export default class TweetResults extends Component {
   }
   renderTweets() {
     return this.props.tweets.map((tweet) => {
-      if(tweet.coordinates)
+      if(tweet.coordinates && tweet.user.location && !(tweet.user.location.includes('Venezuela')|| tweet.user.location.includes('Ecuador')))
         return (<Tweet key={tweet.id} tweet={tweet}/>);
     });
   }
 
   render() {
     return (
-      <div className="tweetResults">
-        {this.renderTweets()}
+      <div>
+
+
+        <div className="tweetResults">
+
+          {this.renderTweets()}
+        </div>
       </div>
     );
   }
